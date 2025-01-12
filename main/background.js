@@ -1,5 +1,5 @@
 import path from 'path'
-import { app, ipcMain } from 'electron'
+import { app, ipcMain, screen } from 'electron'
 import serve from 'electron-serve'
 import { createQRWindow, createWindow, openTerminal } from './helpers'
 
@@ -15,8 +15,10 @@ if (isProd) {
   await app.whenReady()
 
   const mainWindow = createWindow('main', {
-    width: 1000,
-    height: 600,
+    x: 0,
+    y: 0,
+    width: screen.getPrimaryDisplay().bounds.width,
+    height: screen.getPrimaryDisplay().bounds.height,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -29,7 +31,7 @@ if (isProd) {
   } else {
     const port = process.argv[2]
     await mainWindow.loadURL(`http://localhost:${port}`)
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
   }
 })()
 
