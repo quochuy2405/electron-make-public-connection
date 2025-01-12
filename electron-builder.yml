@@ -1,0 +1,12 @@
+appId: com.taekwondo.alpha
+productName: Thi Đấu Taekwondo
+copyright: Copyright © 2018 Taekwondo Alpha Gia Lai
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
